@@ -64,8 +64,12 @@ def selection_sort(arr):
 # RADIX SORT
 
 # HEAP SORT
+def heap_sort(arr): 
+    pass 
 
 # QUICK SORT
+def quick_sort(arr): 
+    pass 
 
 # MERGE SORT 
 def merge_sort(arr): 

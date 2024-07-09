@@ -111,7 +111,7 @@ def merge_two_sorted_linked_lists(head1, head2):
     elif head2: 
         tail.next = head2
 
-    return dummy.next # Remember to return dummy.next, not dummy!
+    return dummy.next # Remember to return dummy.next, not dummy. This works because at the beginning, tail was equal to dummy and tail.next was set equal to head.next.
 
 def reverse_linked_list_iter(head): 
     prev, cur = None, head 

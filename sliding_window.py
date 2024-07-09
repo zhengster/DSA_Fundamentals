@@ -21,9 +21,24 @@ def longest_substring_without_repeating_characters(string):
             i += 1 
     return max_len 
 
-def container_with_the_most_water(array): 
+def container_with_the_most_water(height): 
     """
+    Given an array representing heights, find the maximum amount of water 
+    stored between any two heights in the array. 
     """
+    max_amount = 0 
+    i, j = 0, len(height) - 1 
+    
+    while i < j: 
+        if height[i] < height[j]: 
+            # Height of the container is always constrained by the lower-value boundary
+            max_amount = max(max_amount, height[i] * (j - i))
+            i += 1 # Increment i pointer to try to find a taller height 
+        else: 
+            max_amount = max(max_amount, height[j] * (j - i))
+            j -= 1 
+    
+    return max_amount  
 
 import unittest 
 class TestSlidingWindow(unittest.TestCase):
