@@ -90,6 +90,24 @@ def get_middle_of_linked_list(head):
         fast = fast.next.next 
     return slow
 
+def insert_element_in_sorted_linked_list(head, element): 
+    """
+    Suppose you have a list: 1 -> 2 -> 3 -> 5, and you want to insert 4. 
+    We need to find where the condition (head.next.val <= element.val) is no true. 
+    That's when head = 3, head.next = 5. So we insert 4 in between 3 and 5. 
+    """
+    head_copy = head
+
+    while head.next and head.next.val <= element.val: 
+        head = head.next 
+    
+    # Assign head.next = element, element.next = original head.next
+    original_next = head.next 
+    head.next = element 
+    element.next = original_next
+
+    return head_copy 
+
 
 def merge_two_sorted_linked_lists(head1, head2): 
     # Initialize dummy node to point to beginning of merged result and tail pointer to store the current node 
@@ -159,6 +177,16 @@ class TestLinkedListMethods(unittest.TestCase):
         head2 = ListNode(2, ListNode(4))
         expected = ListNode(1, ListNode(2, ListNode(3, ListNode(4, ListNode(5)))))
         self.assertEqual(expected, merge_two_sorted_linked_lists(head1, head2))
+    
+    def test_insert_element_in_sorted_list(self): 
+        head = ListNode(1, ListNode(3, ListNode(5)))
+        element = ListNode(4, None) 
+        expected = ListNode(1, ListNode(3, ListNode(4, ListNode(5))))
+        self.assertEqual(expected, insert_element_in_sorted_linked_list(head, element))
+
+        head = ListNode(1, ListNode(2, ListNode(3)))
+        expected = ListNode(1, ListNode(2, ListNode(3, ListNode(4))))
+        self.assertEqual(expected, insert_element_in_sorted_linked_list(head, element))
     
     def test_merge_sort(self): 
         head = ListNode(4, ListNode(3, ListNode(2, ListNode(1))))

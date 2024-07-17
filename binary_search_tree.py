@@ -180,3 +180,4 @@ def valid_bst(root):
     minimum, maximum = -1 * float('inf'), float('inf')
     return recurse(root, minimum, maximum)     
 
+# SERIALIZING AND DESERIALIZING 

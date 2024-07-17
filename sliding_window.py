@@ -40,6 +40,25 @@ def container_with_the_most_water(height):
     
     return max_amount  
 
+def maximum_subarray(nums): 
+    """
+    Given an array of numbers, find and return the maximum sum of a subarray. 
+    """
+    # Keep track of two variables: cur_sum and max_sum (seen so far) 
+    cur_sum = nums[0] 
+    max_sum = nums[0] 
+
+    for i in range(1, len(nums)): 
+        # If cur_sum < 0, then reset it to be 0. 
+        # We want to get rid of all the negative prefixes that are decreasing our total sum. 
+        if cur_sum < 0:  
+            cur_sum = 0 
+
+        cur_sum += nums[i] 
+        max_sum = max(max_sum, cur_sum) 
+    
+    return max_sum 
+
 import unittest 
 class TestSlidingWindow(unittest.TestCase):
 
@@ -51,6 +70,11 @@ class TestSlidingWindow(unittest.TestCase):
         string = "abcedf"
         expected = 6 
         self.assertEqual(expected, longest_substring_without_repeating_characters(string))
+    
+    def test_maximum_subarray(self): 
+        nums = [5,4,-1,7,8]
+        expected = 23
+        self.assertEqual(expected, maximum_subarray(nums)) 
 
 if __name__ == "__main__": 
     unittest.main() 
